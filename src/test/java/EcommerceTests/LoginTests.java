@@ -1,5 +1,6 @@
 package EcommerceTests;
 
+import EcommercePages.ProductsPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -54,7 +55,7 @@ public class LoginTests extends BaseClass {
 
     @Test(priority = 5, description = "test login scenarios with valid user name and password happy scenario")
     public void validateLoginValidCredentials() {
-        var homePage = loginPage.loginValidCredentials();
+        ProductsPage homePage = loginPage.loginValidCredentials();
         Assert.assertTrue(homePage.checkProductsLogoExist());
 
     }
