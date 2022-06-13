@@ -35,6 +35,13 @@
                     <include name="filterProductsByPriceASC"/>
                 </methods>
             </class>
+            <class name="MapsApisTests.MapsApisTests">
+
+                <methods>
+                    <include name="testUnAuthorized"/>
+                    <include name="discoverPlace"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

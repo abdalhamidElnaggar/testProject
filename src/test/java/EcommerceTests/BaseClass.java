@@ -24,11 +24,11 @@ public class BaseClass {
         //driver initlializations
         WebDriverManager.chromedriver().setup();
 
+
     }
 
     @BeforeMethod
     public void init() {
-        //properties file;
         dataparser = new TestDataParser();
 
 
@@ -37,8 +37,6 @@ public class BaseClass {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
         String url = dataparser.getPropertyValue("url");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
@@ -55,9 +53,7 @@ public class BaseClass {
         driver.quit();
     }
 
-    @AfterTest
-    public void tearDown() {
-    }
+
 }
 
 
