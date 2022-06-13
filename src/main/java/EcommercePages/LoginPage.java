@@ -1,16 +1,11 @@
 package EcommercePages;
 
+import CommonUtils.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
+public class LoginPage extends BasePage {
 
-public class LoginPage {
-
-
-    private final WebDriver driver;
     private final By userName = By.id("user-name");
     private final By userPassword = By.id("password");
     private final By loginBtn = By.id("login-button");
@@ -21,44 +16,42 @@ public class LoginPage {
 
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public void typeUserName(String userNametxt) {
-        driver.findElement(userName).sendKeys(userNametxt);
+        type(userName, userNametxt);
 
     }
 
-    public void typeUserPassword(String UserPswd) {
-        driver.findElement(userPassword).sendKeys(UserPswd);
+    public void typeUserPassword(String userPswd) {
+        type(userPassword, userPswd);
+
 
     }
 
     public void clickLogin() {
-        driver.findElement(loginBtn).click();
+        click(loginBtn);
     }
 
     public Boolean checkErrorMsgExists() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(errorMsg));
-        return !driver.findElements(errorMsg).isEmpty();
+        return checkElementExists(errorMsg);
     }
 
     public void clickOnCloseErrorMsg() {
-        driver.findElement(closeErrorMsg).click();
-        driver.findElement(userPassword).clear();
-        driver.findElement(userName).clear();
-
+        click(closeErrorMsg);
+        clear(userPassword);
+        clear(userName);
     }
 
     public String getErrorMsgTest() {
-        return driver.findElement(errorMsg).getText();
+        return getElementText(errorMsg);
     }
 
     public ProductsPage loginValidCredentials() {
-        typeUserName(validUserName);
-        typeUserPassword(validPswd);
-        clickLogin();
+        type(userName, validUserName);
+        type(userPassword, validPswd);
+        click(loginBtn);
         return new ProductsPage(driver);
     }
 

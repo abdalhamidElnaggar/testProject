@@ -1,15 +1,11 @@
 package EcommercePages;
 
+import CommonUtils.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
-public class ProductsPage {
-    private final WebDriver driver;
+public class ProductsPage extends BasePage {
     private final By productsLogo = By.xpath("//span[text()='Products']");
     private final By filtersDropDown = By.xpath("//select[@class='product_sort_container']");
     private final By firstItem = By.xpath("(//div[@class='inventory_item_name'])[1]");
@@ -23,28 +19,28 @@ public class ProductsPage {
 
 
     public ProductsPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public Boolean checkProductsLogoExist() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(productsLogo));
-        return !driver.findElements(productsLogo).isEmpty();
+
+        return checkElementExists(productsLogo);
     }
 
+
     public void filterProducts(String filterCriteria) {
-        Select drpProducts = new Select(driver.findElement(filtersDropDown));
+        Select drpProducts = new Select(find(filtersDropDown));
         drpProducts.selectByValue(filterCriteria);
 
     }
 
     public String getShoppingCartItemsCount() {
-        return driver.findElement(shoppingCart).getText();
+        return getElementText(shoppingCart);
 
     }
 
     public CardPage clickOnShoppingCard() {
-        driver.findElement(shoppingCart).click();
+        click(shoppingCart);
         return new CardPage(driver);
     }
 
@@ -54,8 +50,8 @@ public class ProductsPage {
     }
 
     public String compareStringSorting() {
-        String firstItemtxt = driver.findElement(firstItem).getText();
-        String secondItemtxt = driver.findElement(secondItem).getText();
+        String firstItemtxt = getElementText(firstItem);
+        String secondItemtxt = getElementText(secondItem);
         String sortingOrder = null;
         int compare = firstItemtxt.compareTo(secondItemtxt);
 
@@ -70,8 +66,8 @@ public class ProductsPage {
     }
 
     public String comparePrices() {
-        String itemPrice1 = driver.findElement(firstItemPrice).getText();
-        String itemPrice2 = driver.findElement(secondItemPrice).getText();
+        String itemPrice1 = getElementText(firstItemPrice);
+        String itemPrice2 = getElementText(secondItemPrice);
 
         StringBuilder sb1 = new StringBuilder(itemPrice1);
         StringBuilder sb2 = new StringBuilder(itemPrice2);
@@ -88,19 +84,15 @@ public class ProductsPage {
 
     public void addItemtoCard(int itemCount) {
         for (int i = 1; i <= itemCount; i++) {
-            int itemNum = i;
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.elementToBeClickable(firstItemAddToCartBtn));
-            driver.findElement(firstItemAddToCartBtn).click();
+
+            click(firstItemAddToCartBtn);
         }
     }
 
     public void removeItemFromCard(int itemCount) {
         for (int i = 1; i <= itemCount; i++) {
-            int itemNum = i;
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.elementToBeClickable(firstItemRemovebBtn));
-            driver.findElement(firstItemRemovebBtn).click();
+
+            click(firstItemRemovebBtn);
         }
     }
 
