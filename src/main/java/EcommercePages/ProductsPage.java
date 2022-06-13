@@ -29,8 +29,7 @@ public class ProductsPage extends BasePage {
 
 
     public void filterProducts(String filterCriteria) {
-        Select drpProducts = new Select(find(filtersDropDown));
-        drpProducts.selectByValue(filterCriteria);
+        selecDropDownMenu(filtersDropDown,filterCriteria);
 
     }
 
