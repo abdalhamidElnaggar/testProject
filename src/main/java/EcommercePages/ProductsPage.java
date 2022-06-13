@@ -3,7 +3,6 @@ package EcommercePages;
 import CommonUtils.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
 
 public class ProductsPage extends BasePage {
     private final By productsLogo = By.xpath("//span[text()='Products']");
@@ -29,7 +28,7 @@ public class ProductsPage extends BasePage {
 
 
     public void filterProducts(String filterCriteria) {
-        selecDropDownMenu(filtersDropDown,filterCriteria);
+        selecDropDownMenu(filtersDropDown, filterCriteria);
 
     }
 

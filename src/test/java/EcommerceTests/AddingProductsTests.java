@@ -11,7 +11,7 @@ public class AddingProductsTests extends BaseClass {
     public void addProductTest() {
 
         ProductsPage productPage = loginPage.loginValidCredentials();
-        int itemCount = 6;
+        int itemCount = 3;
         productPage.addItemtoCard(itemCount);
         Assert.assertEquals(productPage.getShoppingCartItemsCount(), String.valueOf(itemCount));
 
