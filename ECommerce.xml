@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="EcommerceTests.Listeners"></listener>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="Ecommerce">
+        <classes>
+            <class name="EcommerceTests.AddingProductsTests">
+                <methods>
+                    <include name="addProductTest"/>
+                    <include name="addThenRemoveProductTest"/>
+                </methods>
+            </class>
+            <class name="EcommerceTests.CardPageTests">
+                <methods>
+                    <include name="addProductsandCheckoutTest"/>
+                    <include name="checkoutE2EScenario"/>
+                </methods>
+            </class>
+            <class name="EcommerceTests.LoginTests">
+                <methods>
+                    <include name="validateLoginWithEmptyCredentials"/>
+                    <include name="validteLoginWithEmptyUserName"/>
+                    <include name="validteLoginWithEmptyUserPassword"/>
+                    <include name="validteLoginWithInvalidCredentials"/>
+                    <include name="validateLoginValidCredentials"/>
+                </methods>
+            </class>
+            <class name="EcommerceTests.ProductsPageTests">
+                <methods>
+                    <include name="filterProductsByNameASC"/>
+                    <include name="filterProductsByNameDESC"/>
+                    <include name="filterProductsByPriceDESC"/>
+                    <include name="filterProductsByPriceASC"/>
+                </methods>
+            </class>
+            <class name="MapsApisTests.MapsApisTests">
+
+                <methods>
+                    <include name="testUnAuthorized"/>
+                    <include name="discoverPlace"/>
+                    <include name="addFeedbackValidPayLoad"/>
+                    <include name="addFeedbackWithInvalidPayload"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
