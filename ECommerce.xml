@@ -40,6 +40,8 @@
                 <methods>
                     <include name="testUnAuthorized"/>
                     <include name="discoverPlace"/>
+                    <include name="addFeedbackValidPayLoad"/>
+                    <include name="addFeedbackWithInvalidPayload"/>
                 </methods>
             </class>
         </classes>

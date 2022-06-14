@@ -43,4 +43,30 @@ public class MapsApisTests extends ApisBaseTest {
 
 
     }
+
+    @Test(priority = 3)
+    public void addFeedbackValidPayLoad() {
+        RestAssured.baseURI = dataparser.getPropertyValue("roadSignFeedBackURI");
+        RequestSpecification httpRequest = RestAssured.given();
+        Response response = httpRequest.headers(createValidheaders()).body(createValidPayload()).post();
+        int statusCode = response.getStatusCode();
+        ResponseBody body = response.getBody();
+        String bodyAsString = body.asString();
+        Assert.assertEquals(statusCode, 200);
+        Assert.assertTrue(bodyAsString.contains("The speed limit is now 100 km/h"));
+
+    }
+
+    @Test(priority = 4)
+    public void addFeedbackWithInvalidPayload() {
+        RestAssured.baseURI = dataparser.getPropertyValue("roadSignFeedBackURI");
+        RequestSpecification httpRequest = RestAssured.given();
+        Response response = httpRequest.headers(createValidheaders()).body(createInValidPayload()).post();
+        int statusCode = response.getStatusCode();
+        ResponseBody body = response.getBody();
+        String bodyAsString = body.asString();
+        Assert.assertEquals(statusCode, 500);
+        Assert.assertTrue(bodyAsString.contains("Failed to read Feedback as Maphub object, missing valid type for feedback"));
+
+    }
 }
